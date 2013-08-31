@@ -21,27 +21,30 @@ find_points = {}
 
 # 交点を数える
 for i in 1 .. last_line
+  if i % 10 == 0
+    p "現在、#{i} 件め。"
+  end
   #debug
   cur_from = i
   cur_to   = pos[i]
   # p "#{j} ->  #{pos[j]}"
   for j in 1 .. last_line
-   from = j
-   to   = pos[j] 
-   # 交差するとはどういう事象？
-   if (cur_from < from && cur_to > to) || (cur_from > from && cur_to < to) 
-     # 交差した。交差ポイントコレクションにあるか？
-     if cur_from < from
-       key = "#{cur_from},#{from}"
-     else
-       key = "#{from},#{cur_from}"
-     end
-     if find_points[key] != true
-       # debug
-       p "交差したポイント #{key}"
-       cross_count = cross_count + 1
-       find_points[key] = true
-     end
+    from = j
+    to   = pos[j] 
+    # 交差した。交差ポイントコレクションにあるか？
+    if cur_from < from
+      key = "#{cur_from},#{from}"
+    else
+      key = "#{from},#{cur_from}"
+    end
+    if find_points[key] != true
+      # 交差するとはどういう事象？
+      if (cur_from < from && cur_to > to) || (cur_from > from && cur_to < to) 
+        # debug
+#       p "交差したポイント #{key}"
+        cross_count = cross_count + 1
+        find_points[key] = true
+      end
    end
   end
 end
