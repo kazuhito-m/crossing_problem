@@ -19,9 +19,12 @@ cross_count = 0
 # 認識済み交点
 find_points = {} 
 
+# Debug
+# last_line = 5000
+
 # 交点を数える
 for i in 1 .. last_line
-  if i % 10 == 0
+  if i % 100 == 0
     p "現在、#{i} 件め。"
   end
   #debug
